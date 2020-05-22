@@ -1,5 +1,8 @@
 ﻿using Kliutsuk.Core.Commands;
 using Kliutsuk.Core.Interfaces;
+using Kliutsuk.Core.Models;
+using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 
 namespace Kliutsuk.Core.Services
@@ -12,13 +15,15 @@ namespace Kliutsuk.Core.Services
         /// <summary>
         /// Base constructor.
         /// </summary>
-        public CommandService()
+        public CommandService(IOptions<API_Config> options)
         {
+            options = options ?? throw new ArgumentNullException(nameof(options));
+
             _commands = new List<ITelegramCommand>
             {
                 new StartCommand(),
-                //new AboutCommand(),
-                //new LinkCommand()
+                new AstronomyPicture(options.Value),
+                new MarsRoverPhotos(options.Value)
             };
         }
 

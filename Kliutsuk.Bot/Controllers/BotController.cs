@@ -40,7 +40,7 @@ namespace Kliutsuk.Bot.Controllers
 
             var message = update.Message;
 
-            Console.WriteLine(string.Format("Пришло сообщение", message.Chat.Id, message.Text));
+            Console.WriteLine(string.Format("Пришло сообщение на сервер.", message.Chat.Id, message.Text));
 
             foreach (var command in _commandService.Get())
             {

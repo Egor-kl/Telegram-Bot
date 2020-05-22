@@ -1,5 +1,6 @@
 using Kliutsuk.Bot.Extensions;
 using Kliutsuk.Core.Interfaces;
+using Kliutsuk.Core.Models;
 using Kliutsuk.Core.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,7 @@ namespace Kliutsuk.Bot
             services.AddHealthChecks();
             services.AddScoped<ICommandService, CommandService>();
             services.AddTelegramBotClient(Configuration);
+            services.Configure<API_Config>(Configuration.GetSection("Api"));
 
             services.AddControllers()
                     .AddNewtonsoftJson(options =>
