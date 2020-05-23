@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Kliutsuk.Core.Models
+﻿namespace Kliutsuk.Core.Models
 {
     /// <summary>
     /// Камера основная.
     /// </summary>
-    public class Camera
+    public class Camera //TODO: Add folder 
     {
         /// <summary>
         /// ID камеры.

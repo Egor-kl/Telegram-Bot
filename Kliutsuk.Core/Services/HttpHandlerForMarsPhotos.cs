@@ -1,9 +1,6 @@
 ﻿using Flurl;
 using Flurl.Http;
 using Kliutsuk.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Kliutsuk.Core.Services
@@ -18,7 +15,7 @@ namespace Kliutsuk.Core.Services
         /// </summary>
         /// <param name="host">Сайт</param>
         /// <param name="path">Путь</param>
-        /// <returns>json list-а с фотографиями</returns>
+        /// <returns>json list с фотографиями</returns>
         public async Task<RootPhotos> GetRequest(string host, string path, string apiKey)
         {
             var res = await host.AppendPathSegment(path)

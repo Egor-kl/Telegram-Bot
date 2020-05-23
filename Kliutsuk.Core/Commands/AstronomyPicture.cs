@@ -17,9 +17,13 @@ namespace Kliutsuk.Core.Commands
         public AstronomyPicture(API_Config api)
         {
             if (api == null)
+            {
                 throw new ArgumentNullException(nameof(api));
+            }
             else
+            {
                 _api = api;
+            }
         }
 
         /// <inheritdoc/>
@@ -28,13 +32,19 @@ namespace Kliutsuk.Core.Commands
         /// <inheritdoc/> 
         public async Task Execute(Message message, ITelegramBotClient client)
         {
+            try
+            {
+                var chatId = message.Chat.Id;
 
-            var chatId = message.Chat.Id;
+                var httpHandler = new HttpHandler();
+                var result = await httpHandler.GetRequest("https://api.nasa.gov/", "planetary/apod", _api.api_key);
 
-            var httpHandler = new HttpHandler();
-            var result = await httpHandler.GetRequest("https://api.nasa.gov/","planetary/apod", _api.api_key);
-
-            await client.SendTextMessageAsync(chatId, $"A.P.O.D - Astronomy Picture of the Day.\n====={result.title}=====\n{result.explanation}\n{result.hdurl}");
+                await client.SendTextMessageAsync(chatId, $"A.P.O.D - Astronomy Picture of the Day.\n====={result.title}=====\n{result.explanation}\n{result.hdurl}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Request failed. Please, try again later");
+            }
         }
 
         /// <inheritdoc/>

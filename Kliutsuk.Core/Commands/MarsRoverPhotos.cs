@@ -2,8 +2,6 @@
 using Kliutsuk.Core.Models;
 using Kliutsuk.Core.Services;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -19,9 +17,13 @@ namespace Kliutsuk.Core.Commands
         public MarsRoverPhotos(API_Config api)
         {
             if (api == null)
+            {
                 throw new ArgumentNullException(nameof(api));
+            }
             else
+            {
                 _api = api;
+            }
         }
         /// <inheritdoc/>
         public string Name { get; } = "/mars";
@@ -45,7 +47,7 @@ namespace Kliutsuk.Core.Commands
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Где-то тут ошибка... Она называется так: '{ex.Message}' и я хз как её починить");
+                Console.WriteLine("Request failed. Please, try again later");
             }
         }
 
