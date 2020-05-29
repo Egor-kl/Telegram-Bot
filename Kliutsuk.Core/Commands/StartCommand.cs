@@ -25,7 +25,7 @@ namespace Kliutsuk.Core.Commands
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Request failed. Please, try again later");
+                await client.SendTextMessageAsync(message.Chat.Id, $"Sorry, we have problem with request, please, try again...");
             }
         }
 

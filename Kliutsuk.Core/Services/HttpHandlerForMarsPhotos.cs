@@ -23,7 +23,7 @@ namespace Kliutsuk.Core.Services
             var date = dateTime.ToString("yyyy-mm-dd");
 
             var res = await host.AppendPathSegment(path)
-                                .SetQueryParams(new {earth_date = "2020-5-21", api_key = apiKey })
+                                .SetQueryParams(new {earth_date = date, api_key = apiKey })
                                 .GetJsonAsync<RootPhotos>();
             return res;
         }

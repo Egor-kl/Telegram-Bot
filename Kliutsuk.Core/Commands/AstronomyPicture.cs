@@ -39,11 +39,11 @@ namespace Kliutsuk.Core.Commands
                 var httpHandler = new HttpHandler();
                 var result = await httpHandler.GetRequest("https://api.nasa.gov/", "planetary/apod", _api.api_key);
 
-                await client.SendTextMessageAsync(chatId, $"A.P.O.D - Astronomy Picture of the Day.\n====={result.title}=====\n{result.explanation}\n{result.hdurl}");
+                await client.SendTextMessageAsync(chatId, $"A.P.O.D - Astronomy Picture of the Day.\n{result.title} \n{result.explanation}\n{result.hdurl}");
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine("Request failed. Please, try again later");
+                await client.SendTextMessageAsync(message.Chat.Id, $"Sorry, we have problem with request, please, try again...");
             }
         }
 

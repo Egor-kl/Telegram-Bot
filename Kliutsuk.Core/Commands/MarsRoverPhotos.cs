@@ -39,16 +39,12 @@ namespace Kliutsuk.Core.Commands
                 var httpHandler = new HttpHandlerForMarsPhotos();
                 var res = await httpHandler.GetRequest("https://api.nasa.gov", "mars-photos/api/v1/rovers/curiosity/photos", _api.api_key);
                 var result = res.Photos;
-                for (var i = 0; i<9;i++)
-                {
-                    Console.WriteLine(result[i].Img_src);
-                }
 
-                await client.SendTextMessageAsync(chatId, $"This is last photo from MARS!\n {result[rand.Next(10)].Img_src} " );
+                await client.SendTextMessageAsync(chatId, $"This is last photo from MARS!\n {result[rand.Next(result.Count)].Img_src}" );
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine("Request failed. Please, try again later");
+                await client.SendTextMessageAsync(message.Chat.Id, $"Sorry, we have problem with request, please, try again...");
             }
         }
 
