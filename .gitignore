@@ -349,4 +349,4 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-asppsettings.json
+Kliutsuk.Bot/appsettings.json
