@@ -1,6 +1,7 @@
 ﻿using Flurl;
 using Flurl.Http;
 using Kliutsuk.Core.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace Kliutsuk.Core.Services
@@ -18,6 +19,9 @@ namespace Kliutsuk.Core.Services
         /// <returns>json list с фотографиями</returns>
         public async Task<RootPhotos> GetRequest(string host, string path, string apiKey)
         {
+            DateTime dateTime = DateTime.UtcNow.AddDays(-1);
+            var date = dateTime.ToString("yyyy-mm-dd");
+
             var res = await host.AppendPathSegment(path)
                                 .SetQueryParams(new {earth_date = "2020-5-21", api_key = apiKey })
                                 .GetJsonAsync<RootPhotos>();

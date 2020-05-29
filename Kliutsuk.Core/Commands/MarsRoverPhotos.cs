@@ -35,6 +35,7 @@ namespace Kliutsuk.Core.Commands
             {
                 var chatId = message.Chat.Id;
 
+                var rand = new Random();
                 var httpHandler = new HttpHandlerForMarsPhotos();
                 var res = await httpHandler.GetRequest("https://api.nasa.gov", "mars-photos/api/v1/rovers/curiosity/photos", _api.api_key);
                 var result = res.Photos;
@@ -43,7 +44,7 @@ namespace Kliutsuk.Core.Commands
                     Console.WriteLine(result[i].Img_src);
                 }
 
-                await client.SendTextMessageAsync(chatId, $"This is last photo from MARS!\n {result[1].Img_src} " );
+                await client.SendTextMessageAsync(chatId, $"This is last photo from MARS!\n {result[rand.Next(10)].Img_src} " );
             }
             catch (Exception ex)
             {
