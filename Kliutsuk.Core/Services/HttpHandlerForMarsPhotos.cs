@@ -20,7 +20,7 @@ namespace Kliutsuk.Core.Services
         public async Task<RootPhotos> GetRequest(string host, string path, string apiKey)
         {
             DateTime dateTime = DateTime.UtcNow.AddDays(-1);
-            var date = dateTime.ToString("yyyy-mm-dd");
+            var date = dateTime.ToString("yyyy-MM-dd");
 
             var res = await host.AppendPathSegment(path)
                                 .SetQueryParams(new {earth_date = date, api_key = apiKey })
